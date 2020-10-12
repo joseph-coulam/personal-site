@@ -1,34 +1,38 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">
-        client
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
+  <main>
+    <div class="container">
+      <h1 class="title">Paw Waves</h1>
+      <section v-for="post in posts" :key="post.fields.slug">
+        <!-- <div
+          class="image"
+          :style="`background: url(https:${post.fields.heroImage.fields.file.url}) center center no-repeat`"
+        ></div> -->
+        <h2 class="title">
+          <nuxt-link :to="post.fields.slug">{{ post.fields.title }}</nuxt-link>
+        </h2>
+        <p class="author">By {{ post.fields.author.fields.name }}</p>
+        <p class="description">
+          {{ post.fields.description }}<br />
+          <nuxt-link :to="post.fields.slug" class="more">Read more ⟶</nuxt-link>
+        </p>
+      </section>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>
-export default {}
+import contentful from '~/plugins/contentful'
+
+export default {
+  computed: {
+    posts() {
+      return this.$store.state.posts
+    },
+  },
+  head: {
+    title: '',
+  },
+}
 </script>
 
 <style>
@@ -47,16 +51,8 @@ export default {}
 }
 
 .title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
+  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   display: block;
   font-weight: 300;
   font-size: 100px;
