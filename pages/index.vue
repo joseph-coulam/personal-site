@@ -1,27 +1,30 @@
 <template>
   <main>
-    <div class="container">
-      <h1 class="title">Paw Waves</h1>
-      <section class="flex flex-row flex-wrap">
-        <div class="w-1/4" v-for="post in posts" :key="post.fields.slug">
-          <!-- <div
-          class="image"
-          :style="`background: url(https:${post.fields.heroImage.fields.file.url}) center center no-repeat`"
-        ></div> -->
-          <h2 class="title">
-            <nuxt-link :to="post.fields.slug">{{
-              post.fields.title
-            }}</nuxt-link>
-          </h2>
-          <p class="author">By {{ post.fields.author.fields.name }}</p>
-          <p class="description">
-            {{ post.fields.description }}<br />
-            <nuxt-link :to="post.fields.slug" class="more"
-              >Read more ⟶</nuxt-link
-            >
-          </p>
-        </div>
+    <div class="container mx-auto">
+      <section class="my-12 w-full">
+        <h1 class="text-3xl font-bold title-font mb-2 text-gray-900">
+          Recent Posts
+        </h1>
+        <p
+          class="lg:w-1/2 w-full text-lg text-gray-600 leading-relaxed text-base"
+        >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.
+        </p>
       </section>
+
+      <section class="w-full">
+        <PostItem
+          v-for="post in posts"
+          :key="post.fields.slug"
+          :title="post.fields.title"
+          :description="post.fields.description"
+        />
+      </section>
+      <!--
+          <nuxt-link :to="post.fields.slug" class="more">Read more ⟶</nuxt-link> -->
     </div>
   </main>
 </template>
@@ -41,8 +44,4 @@ export default {
 }
 </script>
 
-<style lang="postcss" scoped>
-.container {
-  @apply min-h-screen flex justify-center items-center text-center mx-auto;
-}
-</style>
+<style lang="postcss" scoped></style>
