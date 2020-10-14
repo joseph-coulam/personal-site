@@ -25,7 +25,7 @@
         </p>
       </div>
 
-      <img class="my-4 w-full" src="https://placehold.it/1000" />
+      <img v-if="image" class="my-4 w-full" :src="image" />
     </div>
   </div>
 </template>

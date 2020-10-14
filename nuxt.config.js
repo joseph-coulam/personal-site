@@ -36,7 +36,15 @@ export default {
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
-  modules: [],
+  modules: ['nuxt-graphql-request'],
+  graphql: {
+    endpoint: 'https://graphql.contentful.com/content/v1/spaces/{SPACE_ID}/explore?access_token={CDA_TOKEN}',
+    /**
+     * Options
+     * See: https://github.com/prisma-labs/graphql-request#passing-more-options-to-fetch
+     */
+    options: {},
+  },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},
